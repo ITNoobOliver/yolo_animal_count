@@ -1,0 +1,13 @@
+train: /home/z5470186/Desktop/yolov12/aerial_sheep/train
+val: /home/z5470186/Desktop/yolov12/aerial_sheep/valid
+test: /home/z5470186/Desktop/yolov12/aerial_sheep/test
+
+nc: 1
+names: ['sheep']
+
+roboflow:
+  workspace: metu-a645a
+  project: aerial-sheep-hl4l5
+  version: 2
+  license: Public Domain
+  url: https://universe.roboflow.com/metu-a645a/aerial-sheep-hl4l5/dataset/2

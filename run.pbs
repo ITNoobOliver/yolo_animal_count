@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -N yolov12_kfold_train
+#PBS -l select=1:ncpus=2:mem=16gb:ngpus=1
+#PBS -l walltime=10:00:00
+#PBS -j oe
+#PBS -o /home/z5470186/Desktop/yolov12/train_log.txt
+#PBS -M z5470186@ad.unsw.edu.au    
+#PBS -m abe                    
+
+# 加载 conda 环境
+source ~/.bashrc
+conda activate yolov12
+
+# 切换到 Python 脚本目录
+cd /home/z5470186/Desktop/yolov12
+
+# 执行脚本（全部流程：合并 + K折训练 + 最终训练 + 测试）
+python cv.py
