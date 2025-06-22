@@ -5,6 +5,7 @@ from ultralytics import YOLO
 import multiprocessing
 from sklearn.model_selection import KFold
 import tempfile
+os.environ['TQDM_DISABLE'] = '1'  # 在脚本开头添加这行
 
 cur_dir = Path('aerial_sheep')  # 修改：指向aerial_sheep目录
 
@@ -133,7 +134,6 @@ def final_train(data_dir):
     yaml_path = None
     
     try:
-        # 创建临时文件但不自动删除
         with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.yaml') as temp_yaml:
             temp_yaml.write(f"""
 train: {data_dir / 'new_train'}
@@ -143,9 +143,8 @@ names: ['sheep']
 """.strip())
             yaml_path = temp_yaml.name
         
-        # 文件已关闭但仍存在，可以安全使用
         model = YOLO(r'/home/z5470186/Desktop/yolov12/ultralytics/cfg/models/v12/yolov12s.yaml')
-        model.train(
+        results = model.train(
             data=yaml_path,
             epochs=100,
             batch=6,
@@ -161,10 +160,12 @@ names: ['sheep']
             workers=2
         )
         
-        print("最终模型保存到: final_sheep_model/best/weights/best.pt")
-        return "final_sheep_model/best/weights/best.pt"
+        # 关键修复：从results对象获取实际保存路径
+        actual_model_path = results.save_dir / 'weights' / 'best.pt'
+        print(f"最终模型保存到: {actual_model_path}")
+        return str(actual_model_path)  # 返回实际路径
+        
     finally:
-        # 手动删除临时文件
         if yaml_path and os.path.exists(yaml_path):
             os.remove(yaml_path)
 
