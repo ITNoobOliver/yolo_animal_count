@@ -52,7 +52,16 @@ pip install -e .
 ```
 
 ### 3. Dataset Preparation
-Ensure the `aerial_sheep` folder is located in the project root directory with complete training, validation, and testing data.
+Download the dataset and rename it to `aerial_sheep` in the project root directory.
+
+**Dataset Source**: Original dataset from [Roboflow Universe - Aerial Sheep Dataset](https://universe.roboflow.com/metu-a645a/aerial-sheep-hl4l5), provided by METU (Middle East Technical University).
+
+**Instructions**: 
+- Download the dataset from the link above (YOLO format)
+- Extract and rename the folder to `aerial_sheep` 
+- Place it in the project root directory (overwrite if exists)
+
+**Dataset Credit**: This project uses the Aerial Sheep dataset originally created by METU and hosted on Roboflow Universe.
 
 ## 🚀 Usage
 
@@ -142,6 +151,7 @@ Upon completion, you will obtain:
 
 ## 🔗 Related Links
 
+- [Aerial Sheep Dataset](https://universe.roboflow.com/metu-a645a/aerial-sheep-hl4l5) - Original dataset source from METU
 - [Third-party YOLOv12 Project](https://github.com/sunsmarterjie/yolov12)
 - [Official Ultralytics YOLO11](https://github.com/ultralytics/ultralytics)
 - [YOLO Model Comparison](https://www.ultralytics.com/blog/comparing-ultralytics-yolo11-vs-previous-yolo-models)
